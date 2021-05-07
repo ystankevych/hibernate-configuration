@@ -43,21 +43,20 @@ public abstract class AbstractTest {
         factory = newSessionFactory();
     }
 
-
     private SessionFactory newSessionFactory() {
         Properties properties = getProperties();
         Configuration configuration = new Configuration().addProperties(properties);
-        for(Class<?> entityClass : entities()) {
+        for (Class<?> entityClass : entities()) {
             configuration.addAnnotatedClass(entityClass);
         }
         String[] packages = packages();
-        if(packages != null) {
-            for(String scannedPackage : packages) {
+        if (packages != null) {
+            for (String scannedPackage : packages) {
                 configuration.addPackage(scannedPackage);
             }
         }
         Interceptor interceptor = interceptor();
-        if(interceptor != null) {
+        if (interceptor != null) {
             configuration.setInterceptor(interceptor);
         }
         return configuration.buildSessionFactory(
