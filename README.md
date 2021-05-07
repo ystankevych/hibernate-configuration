@@ -8,11 +8,26 @@ Your task is to implement the following steps:
 - add the `checkstyle maven plugin`. You can use the configuration from your previous projects.
 - add required hibernate dependencies
 - create `hibernate.cfg.xml` file
-- complete implementation of `mate/academy/model/Movie.java` class
-- complete implementation of `mate/academy/dao/impl/MovieDaoImpl.java` class
+- create `HibernateUtil` class
+- create `Movie` model class
+- create `MovieDao` interface and `MovieDaoImpl` class
+    ```java
+      public interface MovieDao {
+          Movie add(Movie movie);
+      
+          Optional<Movie> get(Long id);
+      }
+    ```
+- create `MovieService` interface and `MovieServiceImpl` class
+    ```java
+      public interface MovieService {
+          Movie add(Movie movie);
+      
+          Movie get(Long id);
+      }
+    ```
 - create your custom unchecked DataProcessingException and throw it in the catch block on dao layer
-- complete implementation of `mate/academy/service/impl/MovieServiceImpl.java` class
-- make `mate/academy/Main.java` work (you should be able to run `main()` method without any errors)
+- in the `mate/academy/Main.main()` method create instance of MovieService using injector and test all methods from MovieService
 - use annotations and the annotation injector located in the `lib` folder
 
 #### [Try to avoid these common mistakes, while solving task](https://mate-academy.github.io/jv-program-common-mistakes/hibernate/configuration/configuration_checklist)
