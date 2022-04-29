@@ -129,14 +129,13 @@ public class HibernateConfigurationTest {
     }
   }
 
-  private Class checkExistence(String name, String type) {
+  private void checkExistence(String name, String type) {
     Optional<Class> optionalClass = allClasses.stream()
             .filter(c -> c.getSimpleName().equals(name))
             .findAny();
     if (optionalClass.isEmpty()) {
       Assert.fail("You should create " + type + " called " + name);
     }
-    return optionalClass.get();
   }
 
   private static List<Class> getClasses(String packageName)
