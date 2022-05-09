@@ -21,7 +21,8 @@ import org.junit.Test;
 public class StructureTest {
     public static final String ROOT_FOLDER = "src/main";
     private static final List<String> requiredClasses = List
-            .of("HibernateUtil", "Movie", "MovieDaoImpl", "MovieServiceImpl");
+            .of("HibernateUtil", "Movie", "MovieDaoImpl",
+                    "MovieServiceImpl", "DataProcessingException");
     private static final List<String> requiredInterfaces = List
             .of("MovieDao", "MovieService");
     private static List<Class> allClasses = new ArrayList<>();
@@ -98,6 +99,15 @@ public class StructureTest {
         if (!Modifier.isStatic(sessionFactoryField.getModifiers())) {
             Assert.fail("SessionFactory field should be static");
         }
+        Optional<Method> optionalGetSessionFactoryMethod = Arrays.stream(
+                hibernateUtil.getDeclaredMethods())
+                .filter(m -> m.getReturnType().getSimpleName().equals("SessionFactory")
+                && Modifier.isPublic(m.getModifiers()))
+                .findAny();
+        if (optionalGetSessionFactoryMethod.isEmpty()) {
+            Assert.fail("You should create public method, that return "
+                    + "SessionFactory instance in HibernateUtil class");
+        }
     }
 
     private void checkMethod(String testedClass, String testedMethod,
@@ -131,7 +141,8 @@ public class StructureTest {
                 .filter(c -> c.getSimpleName().equals(name))
                 .findAny();
         if (optionalClass.isEmpty()) {
-            Assert.fail("You should create " + type + " called " + name);
+            Assert.fail("You should create " + type + " called " + name
+                    + ". Create this " + type + " or check naming");
         }
     }
 
