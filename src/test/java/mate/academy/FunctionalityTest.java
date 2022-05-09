@@ -229,7 +229,7 @@ public class FunctionalityTest extends AbstractTest {
             field.setAccessible(true);
             Mockito.when(getSessionFactoryMethod.invoke(null)).thenReturn(sessionFactory);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Failed to mock getSessionFactoryMethod", e);
+            throw new RuntimeException("Failed to mock getSessionFactory method", e);
         }
     }
 
@@ -250,7 +250,7 @@ public class FunctionalityTest extends AbstractTest {
         try {
             addedMovie = addMethod.invoke(movieDaoImplInstance, movie);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Could not invoke method add.", e);
+            throw new RuntimeException("Could not invoke method add " + addMethod, e);
         }
         return addedMovie;
     }
@@ -270,7 +270,7 @@ public class FunctionalityTest extends AbstractTest {
         try {
             optionalMovieFromDb = (Optional) getMethod.invoke(movieDaoImplInstance, id);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Could not invoke get(Long id) method", e);
+            throw new RuntimeException("Could not invoke \"get(Long id)\" method", e);
         }
         return optionalMovieFromDb;
     }
