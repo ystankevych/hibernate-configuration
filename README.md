@@ -29,6 +29,7 @@ Your task is to implement the following steps:
 - create your custom unchecked DataProcessingException and throw it in the catch block on dao layer
 - in the `mate/academy/Main.main()` method create instance of MovieService using injector and test all methods from MovieService
 - use annotations and the annotation injector located in the `lib` folder
+- run tests with command `mvn -DskipTests=false clean package`.
 
 __!!! Important:__ you should have only `Movie` model with dao and service layer. Don't create other models and don't push them to PR.
 
