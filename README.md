@@ -5,7 +5,6 @@ Completed structure of project is described below:
 ![pic](Hibernate_Cinema_Uml.png)
 
 Your task is to implement the following steps:
-- add the `checkstyle maven plugin`. You can use the configuration from your previous projects.
 - add required hibernate dependencies
 - create `hibernate.cfg.xml` file
 - create `HibernateUtil` class
