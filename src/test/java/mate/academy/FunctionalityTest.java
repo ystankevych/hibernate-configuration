@@ -1,6 +1,7 @@
 package mate.academy;
 
 import static org.mockito.Mockito.description;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mockStatic;
 
@@ -129,6 +130,7 @@ public class FunctionalityTest extends AbstractTest {
             mockSessionFactory(mockedSessionFactory);
             Object testMovie = getTestMovie();
             Mockito.when(mockedSession.save(testMovie)).thenThrow(new RuntimeException());
+            doThrow(new RuntimeException()).when(mockedSession).persist(testMovie);
             Class dataProcessingExceptionClass = getClass("DataProcessingException");
 
             try {
