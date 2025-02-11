@@ -15,8 +15,12 @@ public class Main {
         movie.setDescription("Drama");
         //add
         movie = service.add(movie);
+        // at this point movie saved to the db and movie id is not null
+        assert movie.getId() != null;
+
         //getById
         Movie byId = service.get(movie.getId());
-        System.out.println(movie);
+        // movie successfully obtained from the db
+        assert byId != null;
     }
 }
